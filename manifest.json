@@ -1,0 +1,39 @@
+{
+
+  "manifest_version": 2,
+  "name": "huntr.dev github extension",
+  "version": "1.0",
+
+  "description": "Add a custom huntr logo in the tool bar and displays the bounty reward for a given github repo",
+
+  "icons": {
+    "48": "huntr_icon_ff48.png",
+	"32": "huntr_icon_ff32.png",
+	"96": "huntr_icon_ff_96.png"
+  },
+  "browser_action": {
+    "default_icon": "huntr_icon142.png",
+    "default_title": "Bounty $$$"
+	},
+
+  "background": {
+      "scripts": ["fetch.js"]
+    },
+
+  "content_scripts":
+  [{
+      "matches": [
+        "https://github.com/*/*"
+      ],
+      "js": [
+        "trigger.js"
+      ],
+      "run_at": "document_start"
+  }],
+	
+  "permissions": [
+    "webRequest",
+    "https://*/*"
+  ]
+  
+}
