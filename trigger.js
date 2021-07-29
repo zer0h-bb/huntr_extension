@@ -15,7 +15,7 @@ function getReward(url)
   sending.then(handleResponse, handleError);
     }}
 	
-	xhr.send(JSON.stringify({
+	/*xhr.send(JSON.stringify({
             query: `
             query GetBountyMetrics($url: AWSURL!) {
                 getBountyMetrics(url: $url) {
@@ -25,7 +25,13 @@ function getReward(url)
             variables: {
                 url
             }
-        }));
+        }));*/
+	//url = https://github.com/zer0h-bb/zer0h-bb/blablabla
+	//url.split("/") == [ "https:", "", "github.com", "zer0h-bb", "zer0h-bb", "blablabla" ]
+	owner = url.split("/")[3]
+	project_name = url.split("/")[4]
+	request = '{"operationName":"GetBountyMetrics","variables":{"owner":"'+owner+'","name":"'+project_name+'"},"query":"query GetBountyMetrics($owner: String!, $name: String!) {getBountyMetrics(owner: $owner, name: $name) {bounty_reward}}"}'
+	xhr.send(request);
 }
 
 
